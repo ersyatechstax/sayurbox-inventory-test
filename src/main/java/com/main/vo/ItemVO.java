@@ -21,4 +21,6 @@ public class ItemVO extends BaseVO {
     private Integer reservedStock;
 
     private Integer availableStock;
+
+    private Integer price;
 }

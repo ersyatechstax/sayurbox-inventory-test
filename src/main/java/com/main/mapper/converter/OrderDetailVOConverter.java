@@ -16,6 +16,8 @@ public class OrderDetailVOConverter extends AbstractBaseVOConverter<OrderDetail,
         vo.setItemName(model.getItem().getName());
         vo.setNote(model.getNote());
         vo.setQuantity(model.getQuantity());
+        vo.setPricePerQty(model.getItem().getPrice());
+        vo.setTotalPrice(model.getItem().getPrice() * model.getQuantity());
         return vo;
     }
 }

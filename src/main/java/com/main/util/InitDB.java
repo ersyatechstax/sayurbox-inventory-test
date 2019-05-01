@@ -58,6 +58,8 @@ public class InitDB {
     List<String> itemDescriptions;
     @Value("#{'${item.stock}'.split(',')}")
     List<Integer> itemStocks;
+    @Value("#{'${item.price}'.split(',')}")
+    List<Integer> itemPrices;
 
     @Value("#{'${parameter.code}'.split(',')}")
     List<String> parameterCodes;
@@ -139,7 +141,7 @@ public class InitDB {
     public void initItem(){
         for(int i = 0; i < itemNames.size(); i++){
             if(!itemRepository.findByName(itemNames.get(i)).isPresent()){
-                itemRepository.save(new Item(itemNames.get(i),itemStocks.get(i),itemDescriptions.get(i)));
+                itemRepository.save(new Item(itemNames.get(i),itemStocks.get(i),itemDescriptions.get(i),itemPrices.get(i)));
             }
         }
     }

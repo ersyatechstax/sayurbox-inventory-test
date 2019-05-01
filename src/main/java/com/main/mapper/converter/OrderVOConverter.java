@@ -39,6 +39,7 @@ public class OrderVOConverter extends AbstractBaseVOConverter<Order,OrderVO> {
         vo.setOrderCode(model.getOrderCode());
         vo.setOrderDate(model.getOrderDate().getTime());
         vo.setPaymentDueDate(model.getPaymentDueDate().getTime());
+        vo.setTotalPrice(model.getTotalPrice());
         if(!model.getOrderStatus().equals(OrderStatus.ORDER_RECEIVED) && !model.getOrderStatus().equals(OrderStatus.CANCELLED)){
             vo.setPaymentReceivedDate(model.getPaymentReceivedDate().getTime());
         }

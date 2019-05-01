@@ -11,6 +11,7 @@ i.version,
 i.secure_id,
 i.name,
 i.description,
+i.price,
 i.stock as actual_stock,
 cast(ifnull((select sum(od.quantity) from items it left join order_details od on it.id = od.item_id join orders o on od.order_id = o.id
 where o.order_status = 'ORDER_RECEIVED' and it.id = i.id

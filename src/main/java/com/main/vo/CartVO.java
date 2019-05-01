@@ -17,11 +17,15 @@ public class CartVO extends BaseVO{
 
     private String itemName;
 
+    private Integer pricePerQty;
+
     @Min(value = 1, message = "Quantity of item should be at least 1")
     private Integer quantity;
 
     private String note;
 
     private boolean itemAvailable;
+
+    private Integer totalPrice;
 
 }

@@ -36,6 +36,8 @@ public class Order extends Base{
     @Column(nullable = false, unique = true, length = 6)
     private String orderCode;
 
+    private Integer totalPrice;
+
     @PrePersist
     public void prePersist(){
         super.prePersist();

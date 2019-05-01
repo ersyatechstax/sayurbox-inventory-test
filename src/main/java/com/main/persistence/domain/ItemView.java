@@ -32,4 +32,6 @@ public class ItemView {
 
     private Integer availableStock;
 
+    private Integer price;
+
 }

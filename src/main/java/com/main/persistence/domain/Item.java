@@ -19,4 +19,6 @@ public class Item  extends Base{
     private Integer stock;
 
     private String description;
+
+    private Integer price;
 }

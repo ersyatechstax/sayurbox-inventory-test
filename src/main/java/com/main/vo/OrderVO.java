@@ -21,4 +21,6 @@ public class OrderVO extends BaseVO{
     private String orderCode;
 
     private List<CartVO> itemList;
+
+    private Integer totalPrice;
 }

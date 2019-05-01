@@ -76,7 +76,7 @@ public class OrderService {
         }
         else {
             //TODO: Create new order
-            order = Optional.of(orderRepository.save(new Order(authService.getCurrentUser(),null,null,null,OrderStatus.PENDING,null)));
+            order = Optional.of(orderRepository.save(new Order(authService.getCurrentUser(),null,null,null,OrderStatus.PENDING,null, null)));
             orderDetail = new OrderDetail(order.get(),item,cartVO.getQuantity(),cartVO.getNote());
             responseMessage = "New order has been created, "+ item.getName()+" has been added to your cart";
         }
@@ -133,6 +133,7 @@ public class OrderService {
                 }
             }
             order = orderVOConverter.transferVOToModelForCheckout(order);
+            order.setTotalPrice(orderDetails.stream().mapToInt(o -> (o.getItem().getPrice() * o.getQuantity())).sum());
             message = "Your order has been checkout successfully";
         }
         else if(vo.getStatus().equals(OrderStatus.PAYMENT_RECEIVED.name())){
@@ -168,6 +169,7 @@ public class OrderService {
             orderVO.setOrderCode(orderDetails.get(0).getOrder().getOrderCode());
             List<CartVO> itemList = new ArrayList<>();
             List<ItemView> itemsCheck = itemViewRepository.findBySecureIdIn(orderDetails.stream().map(o -> o.getItem().getSecureId()).collect(Collectors.toList()));
+            Integer totalPrice = 0;
             for(OrderDetail item : orderDetails){
                 CartVO cartVO = orderDetailVOConverter.transferModelToVO(item,null);
                 //TODO: Set flag for item is available or not based on available_stock
@@ -178,8 +180,10 @@ public class OrderService {
                     cartVO.setItemAvailable(true);
                 }
                 itemList.add(cartVO);
+                totalPrice += cartVO.getTotalPrice();
             }
             orderVO.setItemList(itemList);
+            orderVO.setTotalPrice(totalPrice);
             return orderVO;
         }
         else{

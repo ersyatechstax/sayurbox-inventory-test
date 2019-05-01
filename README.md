@@ -59,14 +59,9 @@ Answer:
 		 - I decreased the item actual_stock when the order payment has been confirmed
 		 - For more handled situations please look the internal documentation i've written in OrderService.updateOrderStatus()
 
-
 Situation must be handled:
-
 1. Susan and Manda is ordering apple concurrently
-
 2. Apple stock = 5, How do you serve Susan and Manda order?
-
-
 
 Answer:
 My humble solution is we do double check when the order is placed, 
@@ -74,4 +69,14 @@ if all the stock is available then customer can checkout and if not we can throw
 - PENDING: where the order hasn't been checkout
 - ORDER_RECEIVED: where the order has been checkout. Things happen in this status are:
 	- Set payment expired date, we give the customer time to pay the order so if the order hasn't been paid yet the item will return to the inventory
-	- Decrease the item stock, we decrease the item stock in the inventory, BUT customer can change their mind to cancel the order by not paying the order or cancelling it then we should update the item stock to it was before
+	- Decrease the item stock, we decrease the item stock in the inventory, BUT customer can change their mind to cancel the order by not paying the order or cancelling it then we should update the item stock over and over again to it was before. In order to avoid that thing I made the solution, I created view for item data that contains column:
+		- actual_stock: this column shows the actual stock in inventory, only changes when item stock is updated and people confirm their order payment
+		- reserved_stock: this column shows the stock that has been reserved for people's order(order_status="ORDER_RECEIVED"), we can use it to show how many stock has been reserved by people's  order and use it as validation for if admin update the item stock, the stock must not be smaller than reserved stock
+		- available_stock: this column shows the current stock, only change when people place or cancel an order. Used to show current stock to the customer. With the all column above we don't have to update the actual stock in inventory, all we need only update the order_status to cancel
+- PAYMENT_RECEIVED: where the order has been paid
+
+I also create scheduler in database layer to cancel the orders with status 'ORDER_RECEIVED' and expired payment due date it means the customer hasn't paid the order yet.
+
+I know my solution is not the best it all depends on the business model and I think(junior mindset) it's almost impossible for the server receiving and processing 2 same requests that uses same resource at the same time, it will cause deadlock and it will ended in processing 1 request. So in the end who will get the apple between Susan and Manda is depending on who placed the order the first
+
+//I included the postman file for example request and body

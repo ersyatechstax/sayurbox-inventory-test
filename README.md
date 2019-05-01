@@ -79,4 +79,6 @@ I also create scheduler in database layer to cancel the orders with status 'ORDE
 
 I know my solution is not the best it all depends on the business model and I think(junior mindset) it's almost impossible for the server receiving and processing 2 same requests that uses same resource at the same time, it will cause deadlock and it will ended in processing 1 request. So in the end who will get the apple between Susan and Manda is depending on who placed the order the first
 
-//I included the postman file for example request and body
+Note:
+- Postman link: https://www.getpostman.com/collections/6ac6b374a9e10b115049 for example request, param, body
+- All requests require authentication except for the authencation request such as login and register

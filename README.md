@@ -77,8 +77,12 @@ if all the stock is available then customer can checkout and if not we can throw
 
 I also create scheduler in database layer to cancel the orders with status 'ORDER_RECEIVED' and expired payment due date it means the customer hasn't paid the order yet.
 
-I know my solution is not the best it all depends on the business model and I think(junior mindset) it's almost impossible for the server receiving and processing 2 same requests that uses same resource at the same time, it will cause deadlock and it will ended in processing 1 request. So in the end who will get the apple between Susan and Manda is depending on who placed the order the first
+I know my solution is not the best it all depends on the business model and I think(as a junior) it's almost impossible for the server receiving and processing 2 same requests that use same resource at the same time, it will cause deadlock and it will ended in processing 1 request. So in the end who will get the apple between Susan and Manda is depending on who placed the order the first.
 
 Note:
 - Postman link: https://www.getpostman.com/collections/6ac6b374a9e10b115049 for example request, param, body
 - All requests require authentication except for the authencation request such as login and register
+- Users available:
+	- username: superadmin, password: 123superadmin123
+	- username: susan, password: 123susan123
+	- username: manda, password: 123manda123

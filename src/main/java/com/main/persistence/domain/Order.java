@@ -21,21 +21,25 @@ public class Order extends Base{
     private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "ORDER_DATE")
     private Date orderDate;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "PAYMENT_RECEIVED_DATE")
     private Date paymentReceivedDate;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "PAYMENT_DUE_DATE")
     private Date paymentDueDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 16)
+    @Column(name = "ORDER_STATUS",length = 16)
     private OrderStatus orderStatus;
 
-    @Column(nullable = false, unique = true, length = 6)
+    @Column(name = "ORDER_CODE",nullable = false, unique = true, length = 6)
     private String orderCode;
 
+    @Column(name = "TOTAL_PRICE")
     private Integer totalPrice;
 
     @PrePersist

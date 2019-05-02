@@ -22,13 +22,17 @@ import java.util.List;
 })
 public class User extends Base {
 
+    @Column(name = "FULL_NAME")
     private String fullName;
 
+    @Column(name = "USERNAME")
     private String username;
 
     @Email
+    @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "PASSWORD")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -38,10 +42,11 @@ public class User extends Base {
     private List<Role> roles;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 8)
+    @Column(name = "ACCOUNT_GROUP",length = 8)
     private AccountGroup accountGroup;
 
 
+    @Column(name = "ACTIVE")
     private Boolean active;
 
     @PrePersist

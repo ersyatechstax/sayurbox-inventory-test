@@ -21,11 +21,12 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Parameter extends Base{
-    @Column(nullable = false)
+    @Column(name = "CODE",nullable = false)
     private String code;
 
-    @Column(nullable = false)
+    @Column(name = "VALUE",nullable = false)
     private String value;
 
+    @Column(name = "DESCRIPTION")
     private String description;
 }

@@ -45,7 +45,7 @@ public abstract class Base implements Serializable {
     private Date createdDate;
 
     @CreatedBy
-    @Column(name = "CREATED_BY", length = 30, updatable = false)
+    @Column(name = "CREATED_BY", updatable = false)
     private String createdBy;
 
     @LastModifiedDate
@@ -54,7 +54,7 @@ public abstract class Base implements Serializable {
     private Date modifiedDate;
 
     @LastModifiedBy
-    @Column(name = "MODIFIED_BY", length = 30)
+    @Column(name = "MODIFIED_BY")
     private String modifiedBy;
 
     @PrePersist

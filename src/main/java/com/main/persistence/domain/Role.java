@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "ROLES")
 public class Role extends Base{
 
-    @Column(length = 40)
+    @Column(name = "NAME",length = 40)
     private String name;
 
 }

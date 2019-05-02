@@ -1,15 +1,10 @@
 package com.main.persistence.domain;
 
-import com.main.persistence.domain.Item;
-import com.main.persistence.domain.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ORDER_DETAILS")
@@ -18,15 +13,17 @@ import javax.persistence.Table;
 @RequiredArgsConstructor
 public class OrderDetail extends Base{
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "ORDER_ID", nullable = false)
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "item_id", nullable = false)
+    @JoinColumn(name = "ITEM_ID", nullable = false)
     private Item item;
 
+    @Column(name = "QUANTITY")
     private Integer quantity;
 
+    @Column(name = "NOTE")
     private String note;
 
 }
